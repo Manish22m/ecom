@@ -7,6 +7,7 @@ import AddProduct from "./components/AddProduct";
 import Product from "./components/Product";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AppProvider } from "./Context/Context";
+import UpdateProduct from "./components/UpdateProduct.jsx";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
@@ -50,9 +51,10 @@ function App() {
             }
           />
           <Route path="/add_product" element={<AddProduct />} />
-          {/* <Route path="/product" element={<Product  />} /> */}
+          <Route path="/product" element={<Product  />} />
           <Route path="products/:id" element={<Product  />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/product/update/:id" element={<UpdateProduct />} />
         </Routes>
       </BrowserRouter>
     </AppProvider>

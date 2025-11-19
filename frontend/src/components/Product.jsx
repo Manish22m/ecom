@@ -39,7 +39,7 @@ const Product = () => {
 
   const deleteProduct = async () => {
     try {
-      await API.delete(`/${id}`);
+      await API.delete(`/product/${id}`);
       removeFromCart(id);
       console.log("Product deleted successfully");
       alert("Product deleted successfully");
@@ -51,6 +51,7 @@ const Product = () => {
   };
 
   const handleEditClick = () => {
+    console.log("Edit ID:", id);
     navigate(`/product/update/${id}`);
   };
 
@@ -104,7 +105,9 @@ const Product = () => {
               <i> {new Date(product.releasedate).toLocaleDateString()}</i>
             </p>
           </div>
-          {/* <div className="update-button ">
+
+
+           <div className="update-button ">
             <button
               className="btn btn-primary"
               type="button"
@@ -120,7 +123,7 @@ const Product = () => {
             >
               Delete
             </button>
-          </div> */}
+          </div> 
         </div>
       </div>
     </>
