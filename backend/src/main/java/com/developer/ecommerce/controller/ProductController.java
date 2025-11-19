@@ -53,6 +53,29 @@ public class ProductController {
         return ResponseEntity.ok().contentType(MediaType.valueOf(product.getImageType())).body(imageFile);
     }
 
-    
+    @PutMapping("/product/{id}")
+    public ResponseEntity<String> updateProduct(@PathVariable int id, @RequestPart Product product, @RequestPart MultipartFile imagefile){
+
+        try {
+           Product product1 = productService.update(id, product, imagefile);
+            if(product1 != null){
+                return new ResponseEntity<>("Upadated Successfully", HttpStatus.OK);
+            }
+        } catch (IOException e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
+    @DeleteMapping("/product/{id}")
+    public ResponseEntity<String> deleteProduct(@PathVariable int id){
+        Product product= productService.getProductById(id);
+        if(product != null){
+            productService.delete(id);
+            return new ResponseEntity<>("Deleted Successfully", HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
 
 }
